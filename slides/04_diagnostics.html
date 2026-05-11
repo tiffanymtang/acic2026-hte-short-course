@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="diagnostics_files/libs/clipboard/clipboard.min.js"></script>
+<script src="diagnostics_files/libs/quarto-html/tabby.min.js"></script>
+<script src="diagnostics_files/libs/quarto-html/popper.min.js"></script>
+<script src="diagnostics_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="diagnostics_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="diagnostics_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="diagnostics_files/libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
+
+  <meta name="author" content="Ana M. Kenney">
+  <title>Diagnostics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="diagnostics_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="diagnostics_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="diagnostics_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="custom-acic.css">
+  <link href="diagnostics_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="diagnostics_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="diagnostics_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="diagnostics_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Diagnostics</h1>
+  <p class="subtitle">Causal Machine Learning for Discovering Heterogeneous Treatment Effects</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Ana M. Kenney 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Statistics, UCI
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="where-we-are" class="slide level2 section-slide">
+<h2>Where we are</h2>
+<div class="section-num">
+
+</div>
+</section>
+<section id="from-falcos-handoff" class="slide level2 smaller">
+<h2>From Falco’s handoff</h2>
+<div class="fragment">
+<p>Falco closed with stability as a <span class="navy">discovery</span> criterion: <em>which covariates plausibly modify the treatment effect?</em></p>
+<div class="keybox">
+<p><strong>The question now:</strong> once you’ve discovered subgroups, effect modifiers, or rules, <em>should you trust them?</em></p>
+</div>
+</div>
+<div class="fragment">
+<p>Possible concerns:</p>
+<ul>
+<li>The CATE model itself is misspecified/a poor fit, discoveries are really just noise</li>
+<li>Another metalearner would have given a meaningfully different (possibly more accurate) answer</li>
+<li>Conclusions are highly sensitive to data perturbations, e.g., removing a few observations completely change estimates the story</li>
+</ul>
+</div>
+<aside class="notes">
+<p>ADD</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="motivation-breast-cancer" class="slide level2 smaller">
+<h2>Motivation: breast cancer</h2>
+
+<img data-src="hte_gbsg2.png" class="quarto-figure quarto-figure-center r-stretch" style="width:98.0%"><div class="fragment">
+<ul>
+<li>Using the same set of pre-treatment covariates, we fitted 5 metalearners on the GBSG2 breast cancer hormonal therapy trial to estimate the heterogeneous treatment effects</li>
+<li>The black line denotes the difference-in-means estimate of the overall ATE</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="keybox">
+<p>Each metalearner gives a drastically different range and distribution of treatment effect estimates, thereby <span class="orange">yielding different substantive conclusions</span> about the benefit of hormonal therapy on breast cancer patients.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Using the same set of pre-treatment covariates (age, menopausal status, tumor size, tumor grade, number of positive nodes, progesterone receptor, and estrogen receptor), we fitted a causal forest, <span class="math inline">\(R\)</span>-learner (with boosted and LASSO base learner), and <span class="math inline">\(X\)</span>-learner (with boosted and LASSO base learner) to estimate the heterogeneous treatment effects <span class="math inline">\(\hat{\tau}_i\)</span> in the breast cancer hormonal therapy trial. The black line denotes the difference-in-means estimate of the overall ATE. The <span class="math inline">\(R\)</span>-learner with LASSO base model predicts a constant treatment effect, implying that no heterogeneity is present. Other metalearners suggest a large amount of heterogeneity; however, each metalearner gives a drastically different range and distribution of treatment effect estimates, thereby yielding different substantive conclusions about the benefit of hormonal therapy on breast cancer patients.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="three-diagnostic-questions" class="slide level2">
+<h2>Three diagnostic questions</h2>
+<div class="cols cols3">
+<div>
+<p><span class="navy"><strong>1. Goodness-of-fit</strong></span></p>
+<p><span class="mid">Is my model capturing any signal?</span></p>
+<p>→ <span class="qchip">Omnibus test</span></p>
+</div>
+<div>
+<p><span class="navy"><strong>2. Model selection</strong></span></p>
+<p><span class="mid">Among several candidate metalearners, which is best and how confident are we?</span></p>
+<p>→ <span class="qchip-green">Relative error</span></p>
+</div>
+<div>
+<p><span class="navy"><strong>3. Robustness</strong></span></p>
+<p><span class="mid">Are estimates sensitive to small changes in the dataset?</span></p>
+<p>→ <span class="qchip-warm">Influence points/sets</span></p>
+</div>
+</div>
+<div class="fragment">
+<div class="keybox">
+<p>The shared obstacle: the individual treatment effect is <span class="navy"><strong>never observed</strong></span>. Every diagnostic must be built around an <span class="orange"><em>observable proxy</em></span> for fit.</p>
+</div>
+</div>
+<aside class="notes">
+<p>ADD</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section id="omnibus-test-for-heterogeneity" class="title-slide slide level1 section-slide center">
+<h1>Omnibus test for heterogeneity</h1>
+
+</section>
+<section id="why-standard-quality-checks-fail" class="slide level2">
+<h2>Why standard quality checks fail</h2>
+<p>Typically, in supervised learning, we can rely on a variety of metrics, e.g., test error</p>
+<p>For HTE estimation this no longer <strong>doesn’t applies</strong>:</p>
+<ul>
+<li>Each unit reveals only <span class="math inline">\(Y_i(T_i)\)</span>, never both <span class="math inline">\(Y_i(1)\)</span> and <span class="math inline">\(Y_i(0)\)</span></li>
+<li><span class="math inline">\(\tau_i = Y_i(1) - Y_i(0)\)</span> is unobservable, so <span class="math inline">\((\hat\tau(X_i) - \tau_i)^2\)</span> is uncomputable</li>
+<li>Comparing <span class="math inline">\(\hat Y_i\)</span> to <span class="math inline">\(Y_i\)</span> doesn’t catch the relevant kind of misspecification. <span class="orange">A metalearner can predict outcomes well and predict heterogeneity terribly.</span></li>
+</ul>
+<div class="keybox">
+<p><strong>We need a test that uses observable quantities but targets the unobservable <span class="math inline">\(\tau(X)\)</span>.</strong></p>
+</div>
+<aside class="notes">
+<p>This is the motivation slide. The bullet about Y vs τ misspecification is worth dwelling on — it’s the most common confusion when people new to HTE see this material. They think “of course I can just compute MSE on Y” but that misses heterogeneity entirely.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-best-linear-predictor-blp-framing" class="slide level2">
+<h2>The Best Linear Predictor (BLP) framing</h2>
+<p><span class="mid">Chernozhukov et al.&nbsp;(2018):</span> project the true CATE onto <span class="math inline">\(\hat\tau(X)\)</span> via the BLP: <span class="math display">\[
+\operatorname{BLP}\!\left[\tau(X)\mid \hat\tau(X)\right] \;=\; \alpha_\tau + \beta_\tau\bigl\{\hat\tau(X) - \mathbb{E}[\hat\tau(X)]\bigr\}
+\]</span></p>
+<p>where <span class="math inline">\(\alpha_\tau = \mathbb{E}[\hat\tau(X)]\)</span> and <span class="math inline">\(\beta_\tau = \dfrac{\operatorname{cov}(\tau(X),\,\hat\tau(X))}{\operatorname{var}(\hat\tau(X))}\)</span>.</p>
+<div class="cols cols-21">
+<div>
+<p><strong>Decomposing <span class="math inline">\(\beta_\tau\)</span>.</strong> Let <span class="math inline">\(v(X) = \tau(X) - \hat\tau(X)\)</span>. Then <span class="math display">\[
+\beta_\tau \;=\; 1 + \operatorname{cor}(v(X),\hat\tau(X))\cdot\frac{\operatorname{sd}(v(X))}{\operatorname{sd}(\hat\tau(X))}
+\]</span></p>
+</div>
+<div>
+<div class="keybox">
+<p><span class="math inline">\(\beta_\tau = 1\)</span> means residual error is <em>uncorrelated</em> with the prediction — the metalearner has captured the relevant signal.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The BLP slide is dense — walk through slowly. Key intuition: β captures whether residual structure is correlated with the prediction. If you’re systematically wrong in a τ̂-correlated way, β ≠ 1. The decomposition makes the “uncorrelated residuals” intuition concrete.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-different-values-of-beta_tau-look-like" class="slide level2">
+<h2>What different values of <span class="math inline">\(\beta_\tau\)</span> look like</h2>
+
+<img data-src="diagnostics_files/figure-revealjs/beta-tau-cases-1.png" style="width:98.0%" class="r-stretch quarto-figure-center"><p class="caption">Three regimes for β_τ. Left: well-fit (β≈1, residuals uncorrelated with τ̂). Center: under-prediction of variation (β&gt;1, predictions too compressed). Right: no signal (β≈0, residuals are all the structure).</p><p><span class="cap">Dashed line: <span class="math inline">\(\beta = 1\)</span> (perfect calibration). Orange: fitted slope of <span class="math inline">\(\tau\)</span> on <span class="math inline">\(\hat\tau\)</span>.</span></p>
+<aside class="notes">
+<p>Three intuition pictures. Important point: β &gt; 1 is more common than people expect — happens when a regularized metalearner over-shrinks. β ≈ 0 is the “no heterogeneity captured” case. Audience should leave knowing β captures <em>calibration</em> of the heterogeneity, not just whether it exists.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="estimating-beta_tau-in-practice" class="slide level2">
+<h2>Estimating <span class="math inline">\(\beta_\tau\)</span> in practice</h2>
+<p>Chernozhukov et al.&nbsp;(2018) show <span class="math inline">\(\beta_\tau\)</span> can be recovered from a Neyman-orthogonal regression:</p>
+<p><span class="math display">\[
+Y_i = \hat\gamma_0 + \hat\gamma_x \hat b_0(X_i)
+\;+\; \hat\alpha_\tau\{Z_i - \hat\pi(X_i)\}
+\;+\; {\color{#1f4e79}\hat\beta_\tau}\{Z_i - \hat\pi(X_i)\}\bigl\{\hat\tau(X_i) - \hat{\mathbb{E}}[\hat\tau(X_i)]\bigr\} + \hat\varepsilon_i
+\]</span></p>
+<p>where <span class="math inline">\(\hat b_0\)</span> is the control outcome model and <span class="math inline">\(\hat\pi\)</span> is the propensity score.</p>
+<div class="cols cols2">
+<div>
+<div class="keybox">
+<p><strong>Test</strong>: <span class="math inline">\(\;H_0: \beta_\tau = 0 \;\;\text{vs}\;\; H_A: \beta_\tau \neq 0\)</span></p>
+<p>Reject <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\hat\tau\)</span> captures real heterogeneity.</p>
+<p>Equivalence test: <span class="math inline">\(H_0:\beta_\tau\neq 1\)</span> vs <span class="math inline">\(H_A:\beta_\tau = 1\)</span></p>
+</div>
+</div>
+<div>
+<p><span class="rust"><strong>What “fail to reject” can mean:</strong></span></p>
+<ul>
+<li><span class="math inline">\(\tau(X)\)</span> is genuinely constant (no heterogeneity to find), <strong>or</strong></li>
+<li><span class="math inline">\(\hat\tau(X)\)</span> is poorly estimated and the test simply has no power</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>Show the regression structure but don’t dwell on the derivation — point out that β̂_τ is the coefficient on the (Z-π̂)·(τ̂ - mean τ̂) interaction. The “what fail-to-reject means” panel is critical context: a non-significant test is ambiguous between “no effect” and “bad model.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cross-fitting-matters-here-too" class="slide level2">
+<h2>Cross-fitting matters here too</h2>
+<p>The orthogonal regression on the previous slide uses <em>plug-in</em> estimates of <span class="math inline">\(\hat\pi\)</span>, <span class="math inline">\(\hat b_0\)</span>, and <span class="math inline">\(\hat\tau\)</span> — all functions of the same data.</p>
+<div class="warmbox">
+<p>Without sample splitting, asymptotic normality of <span class="math inline">\(\hat\beta_\tau\)</span> fails: residuals from the auxiliary fits leak into the test. Standard errors become unreliable.</p>
+</div>
+<div class="keybox">
+<p><strong>Recipe.</strong></p>
+<ul>
+<li>Split data into folds <span class="math inline">\(\mathcal{D}_1,\dots,\mathcal{D}_K\)</span></li>
+<li>For each fold <span class="math inline">\(k\)</span>: fit nuisances <span class="math inline">\((\hat\pi, \hat b_0, \hat\tau)\)</span> on <span class="math inline">\(\mathcal{D}_{-k}\)</span></li>
+<li>Plug into the orthogonal regression and compute <span class="math inline">\(\hat\beta_\tau^{(k)}\)</span> on <span class="math inline">\(\mathcal{D}_k\)</span></li>
+<li>Aggregate <span class="math inline">\(\hat\beta_\tau\)</span> as the (median or mean) across folds; standard error from across-fold variance plus within-fold variance</li>
+</ul>
+</div>
+<p><span class="mid">Yields the asymptotic normality you need for hypothesis testing.</span></p>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="drawbacks-reliance-on-ols-estimates" class="slide level2">
+<h2>Drawbacks: reliance on OLS estimates</h2>
+</section>
+<section id="drawbacks-heavy-tailed-residuals-illustration" class="slide level2">
+<h2>Drawbacks: heavy-tailed residuals illustration</h2>
+<p>Even when <span class="math inline">\(\hat\tau\)</span> is a reasonable model, residuals from this regression can be heavy-tailed → OLS estimate of <span class="math inline">\(\beta_\tau\)</span> is unstable → false negatives.</p>
+<p><span class="navy"><strong>Standard test</strong></span></p>
+<p>Uses OLS on the orthogonal regression. Influenced by a few outlying points; can fail to reject even when <span class="math inline">\(R^2\)</span> on the underlying <span class="math inline">\(\hat\tau\)</span> is high.</p>
+<p><span class="mid">Sample finding: in simulations with <span class="math inline">\(R^2 &gt; 0.7\)</span> on prediction accuracy, <strong>47% of standard tests were not significant</strong>.</span> :::</p>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="empirical-false-negative-rate" class="slide level2">
+<h2>Empirical: false-negative rate</h2>
+</section>
+<section id="empirical-estimation-accuracy-of-hatbeta_tau" class="slide level2">
+<h2>Empirical: estimation accuracy of <span class="math inline">\(\hat\beta_\tau\)</span></h2>
+<p>:::</p>
+<aside class="notes">
+<p>Same caveat — replace with the actual figure. Takeaway: not just about reducing false negatives — the point estimate is genuinely better, especially in small-n regimes typical of clinical trials.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-the-test-does-and-doesnt-tell-you" class="slide level2">
+<h2>What the test does, and doesn’t, tell you</h2>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>When the omnibus test rejects:</strong></span></p>
+<ul>
+<li>You have evidence that <span class="math inline">\(\hat\tau\)</span> captures <em>some</em> signal</li>
+<li>The model is at least minimally calibrated to <span class="math inline">\(\tau\)</span></li>
+<li>It does <em>not</em> tell you the model is right everywhere or that the discovered subgroups are correct</li>
+</ul>
+<p><span class="mid">Next step: relative-error comparisons (is this the <em>best</em> model?) and influence diagnostics (is the answer driven by a few points?).</span></p>
+</div>
+<div>
+<p><span class="rust"><strong>When the omnibus test fails to reject:</strong></span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Decision-tree slide. This is what an audience member walks away with as actionable advice. The right-hand side is the more useful column — what to do when things look bad.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="rule-of-thumb" class="slide level2">
+<h2>Rule of thumb</h2>
+<div class="keybox">
+<p><strong>Workflow.</strong></p>
+</div>
+<div class="warmbox">
+<p><strong>Caveat.</strong> The omnibus test answers a global question <em>is there any signal?</em> and gives no information about <span class="navy">where</span> or <span class="navy">for whom</span> the model fits well. That’s what the next two diagnostics will give us.</p>
+</div>
+<aside class="notes">
+<p>Bridging slide. Sets up the next part: omnibus is global, but we usually want to compare <em>across</em> models, and we want to know <em>for whom</em> the model works. Those are the next two pieces.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="relative-error" class="title-slide slide level1 section-slide center">
+<h1>Relative error</h1>
+<div class="section-num">
+<p>IS THIS THE BEST AMONG ALTERNATIVES?</p>
+</div>
+</section>
+<section id="the-model-selection-problem" class="slide level2">
+<h2>The model-selection problem</h2>
+<p>In practice you fit multiple metalearners — say a causal forest, an X-learner with random forest, an R-learner with LASSO — and they disagree.</p>
+<div class="keybox">
+<p><strong>Which one should you pick?</strong></p>
+<p>Without ground truth <span class="math inline">\(\tau_i\)</span>, you can’t compute the obvious metric (test MSE on <span class="math inline">\(\tau\)</span>).</p>
+</div>
+<p><span class="navy"><strong>Goal:</strong></span> a procedure that</p>
+<ul>
+<li>works on observed data only (no oracle <span class="math inline">\(\tau\)</span>)</li>
+<li>yields a confidence set <span class="math inline">\(\hat S\)</span> for the <em>winning</em> estimator</li>
+<li>controls the probability that the true winner is missed at level <span class="math inline">\(\alpha\)</span></li>
+</ul>
+<p><span class="mid">Note: “winner” here means <em>lowest MSE on <span class="math inline">\(\tau\)</span></em>. We can’t compute that — but we can rank candidates relative to each other.</span></p>
+<aside class="notes">
+<p>The Grant figure with five different metalearners on the same breast-cancer data is a perfect motivator here. Mention it verbally. The selection problem is “which of these to trust” with no oracle.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-about-pehe-and-policy-risk" class="slide level2">
+<h2>What about PEHE and policy risk?</h2>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>Existing alternatives</strong></span></p>
+<ul>
+<li><strong>PEHE</strong> [Hill 2011]: requires ground-truth <span class="math inline">\(\tau\)</span> — only usable in semi-synthetic benchmarks</li>
+<li><strong>Policy risk</strong> [Shalit et al.&nbsp;2017]: evaluates <em>recommendation</em> quality, not estimation quality; doesn’t recover the best <span class="math inline">\(\hat\tau\)</span></li>
+<li><strong>Influence-function approaches</strong>: compute risk gradients but don’t formalize the selection question</li>
+</ul>
+<div class="warmbox">
+<p>None of these gives you a <strong>confidence set for the winning estimator</strong>.</p>
+</div>
+</div>
+<div>
+<p><span class="orange"><strong>The relative-error approach</strong></span></p>
+<p>Instead of estimating <span class="math inline">\(\mathbb{E}[(\hat\tau - \tau)^2]\)</span> directly (which requires <span class="math inline">\(\tau\)</span>), estimate the <em>difference</em>: <span class="math display">\[
+\delta(\hat\tau_1, \hat\tau_2) \;=\; \mathbb{E}[(\hat\tau_1 - \tau)^2] - \mathbb{E}[(\hat\tau_2 - \tau)^2]
+\]</span></p>
+<div class="keybox">
+<p>The unobservable <span class="math inline">\(\tau\)</span> enters <span class="math inline">\(\delta\)</span> only through <em>one</em> term. We can estimate it.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Compare-and-contrast with existing methods. Audience will know PEHE; they may not know the limitations. Frame the relative-error approach as “the right way to do model selection in HTE.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pairwise-relative-error-gao-2024" class="slide level2">
+<h2>Pairwise relative error (Gao, 2024)</h2>
+<p>For two estimators <span class="math inline">\(\hat\tau_1, \hat\tau_2\)</span>, the difference in MSE is <span class="math display">\[
+\delta(\hat\tau_1, \hat\tau_2) \;\triangleq\; \mathbb{E}[(\hat\tau_1(X) - \tau(X))^2] - \mathbb{E}[(\hat\tau_2(X) - \tau(X))^2]
+\]</span></p>
+<p>Expanding the squares: <span class="math display">\[
+\delta(\hat\tau_1, \hat\tau_2) \;=\; \mathbb{E}\!\left[\hat\tau_1^2(X) - \hat\tau_2^2(X)\right] - 2\,\mathbb{E}\!\left[(\hat\tau_1(X) - \hat\tau_2(X))\,\tau(X)\right]
+\]</span></p>
+<div class="keybox">
+<p><strong>Why this matters.</strong> The dependence on the unobserved <span class="math inline">\(\tau\)</span> is now <strong>first-order</strong>: <span class="math inline">\(\tau(X)\)</span> enters <span class="math inline">\(\delta\)</span> as an inner product against <span class="math inline">\((\hat\tau_1 - \hat\tau_2)\)</span>, not as a squared term.</p>
+<p>→ Plug-in estimation of <span class="math inline">\(\tau\)</span> contributes only first-order error to <span class="math inline">\(\hat\delta\)</span>.</p>
+</div>
+<aside class="notes">
+<p>The “trick” slide. The cancellation that turns squared-error differences into a first-order target is the key insight. It’s why we can do ground-truth-free inference at all. Spend time here — the audience needs to feel the payoff.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-one-step-estimator-with-cross-fitting" class="slide level2">
+<h2>A one-step estimator with cross-fitting</h2>
+<p>Plug in nuisance estimates <span class="math inline">\(\tilde\mu_1, \tilde\mu_0, \tilde e\)</span> via a Neyman-orthogonal one-step: <span class="math display">\[
+\hat\delta(\hat\tau_1,\hat\tau_2) = \tfrac{1}{n}\sum_{i=1}^n \hat t(Z_i;\hat\tau_1,\hat\tau_2)
+\]</span></p>
+<p>where <span class="math inline">\(\hat t\)</span> is an augmented IPW–style influence function for <span class="math inline">\(\delta\)</span>.</p>
+<p><span class="navy">Use <span class="math inline">\(K\)</span>-fold cross-fitting:</span> train <span class="math inline">\(\tilde\mu_1, \tilde\mu_0, \tilde e\)</span> on <span class="math inline">\(\mathcal{D}_{-k}\)</span>, evaluate <span class="math inline">\(\hat\delta\)</span> on <span class="math inline">\(\mathcal{D}_k\)</span>, average.</p>
+<div class="keybox">
+<p><strong>Asymptotic normality (Gao, 2024).</strong> Under standard overlap, consistency, and stability of the nuisance estimators, <span class="math display">\[
+\frac{\hat\delta - \delta}{\sqrt{\widehat V/n}} \;\xrightarrow{d}\; \mathcal{N}(0,1).
+\]</span></p>
+</div>
+<p><span class="mid">This is the <strong>statistical foundation</strong> that lets us turn pairwise comparisons into hypothesis tests.</span></p>
+<aside class="notes">
+<p>Don’t dwell on the specific form of t̂. Important point: cross-fitting + one-step gives asymptotic normality. That’s what we’ll lean on for testing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="argmin-inference-framing-the-selection-problem" class="slide level2">
+<h2>Argmin inference: framing the selection problem</h2>
+<p>For <span class="math inline">\(K\)</span> candidate estimators, we want a confidence set <span class="math inline">\(\hat S\)</span> for the winner <span class="math inline">\(\hat\tau_{(1)}\)</span>.</p>
+<p>For each candidate <span class="math inline">\(r \in \{1,\dots,K\}\)</span>, test whether <span class="math inline">\(r\)</span> dominates all competitors: <span class="math display">\[
+H_0^{(r)}:\;\delta(\hat\tau_r,\hat\tau_s) &lt; 0\;\;\forall s\neq r \quad\text{vs}\quad H_A^{(r)}:\;\exists s:\delta(\hat\tau_r,\hat\tau_s) &gt; 0
+\]</span></p>
+<div class="keybox">
+<p><strong>Family-wise error rate (FWER) control.</strong> <span class="math inline">\(\hat S\)</span> contains the true winner with probability <span class="math inline">\(\geq 1 - \alpha\)</span>: <span class="math display">\[
+\liminf_{n\to\infty} \mathbb{P}(\hat\tau_{(1)} \in \hat S) \geq 1 - \alpha.
+\]</span></p>
+<p><span class="mid">Any candidate failing to reject <span class="math inline">\(H_0^{(r)}\)</span> is <em>kept</em> in <span class="math inline">\(\hat S\)</span>; we only exclude estimators we have strong evidence are not the winner.</span></p>
+</div>
+<aside class="notes">
+<p>Argmin inference framing — note the connection to ranking inference Tiffany or Falco may have mentioned. We’re inverting a hypothesis test to get a confidence set, in the spirit of Hodges &amp; Lehmann.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="naive-baseline-a-max-statistic-test" class="slide level2">
+<h2>Naive baseline: a max-statistic test</h2>
+<p>For each candidate <span class="math inline">\(r\)</span>, build pairwise <span class="math inline">\(z\)</span>-statistics and test against the <em>worst</em> one: <span class="math display">\[
+S_{r,s} \;=\; \frac{\hat\delta(\hat\tau_r,\hat\tau_s)}{\hat\sigma_{r,s}}, \qquad
+S_r^{\max} = \max_{s\neq r} S_{r,s}.
+\]</span></p>
+<p><span class="mid">Add <span class="math inline">\(r\)</span> to <span class="math inline">\(\hat S\)</span> if <span class="math inline">\(S_r^{\max}\)</span> is below its <span class="math inline">\(1-\alpha\)</span> null quantile (estimated by Gaussian resampling using <span class="math inline">\(\hat\Sigma_r\)</span>).</span></p>
+<div class="warmbox">
+<p><span class="rust"><strong>The problem.</strong></span> The max-statistic treats every competitor symmetrically. As <span class="math inline">\(K\)</span> grows:</p>
+<ul>
+<li>A clearly-inferior estimator <span class="math inline">\(\hat\tau_s\)</span> contributes a <span class="math inline">\(z\)</span>-statistic that’s not informative about whether <span class="math inline">\(r\)</span> is the winner — but <strong>inflates the critical value</strong></li>
+<li>Power against close competitors collapses</li>
+<li>Effect: fewer rejections → larger <span class="math inline">\(\hat S\)</span> → worse selection</li>
+</ul>
+</div>
+<aside class="notes">
+<p>The “why naive doesn’t work” slide. Intuition: max-statistic methods penalize you for adding obviously-bad candidates. We want a method that <em>down-weights</em> obvious losers automatically.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-more-powerful-test-exponentially-weighted-aggregation" class="slide level2">
+<h2>A more powerful test: exponentially weighted aggregation</h2>
+<p>For estimator <span class="math inline">\(\hat\tau_r\)</span>, build a <em>weighted</em> aggregate of pairwise relative errors per data point: <span class="math display">\[
+Q_{i,r} \;=\; \sum_{j\neq r} \hat\omega_{r,j}\, \hat t(Z_i;\hat\tau_r,\hat\tau_j),
+\qquad
+\hat\omega_{r,j} \propto \exp\bigl(\eta\,\hat\delta(\hat\tau_r,\hat\tau_j)\bigr)
+\]</span></p>
+<div class="keybox">
+<p><strong>Idea.</strong> Up-weight competitors that look genuinely close to <span class="math inline">\(r\)</span>; down-weight obviously-inferior competitors that would otherwise inflate the critical threshold.</p>
+<p><span class="mid">The exponential mechanism (from differential privacy literature) provides the right rate of weight decay.</span></p>
+</div>
+<p><span class="navy"><strong>Result:</strong></span> powerful argmin inference that adapts to which competitors are close to the winner, not how many estimators are in the candidate set.</p>
+<aside class="notes">
+<p>Exponential weighting is the headline. Tunable parameter η controls how aggressively to discount. In the paper this is set via cross-validation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="why-naive-weighting-doesnt-work-and-the-fix" class="slide level2">
+<h2>Why naive weighting doesn’t work — and the fix</h2>
+<p><span class="navy">Why we can’t just plug <span class="math inline">\(\hat\delta\)</span> into weights and use the same fold:</span></p>
+<div class="warmbox">
+<p>The pairwise statistics <span class="math inline">\(\hat t(Z_i;\hat\tau_r,\hat\tau_j)\)</span> across <span class="math inline">\(j\)</span> are <strong>correlated</strong> (they share the same <span class="math inline">\(Z_i\)</span>). Cross-fold weighting leaks information into the test, breaking asymptotic normality of <span class="math inline">\(Q_{i,r}\)</span> and inflating FWER.</p>
+</div>
+<div class="keybox">
+<p><strong>Two-layer cross-fitting structure.</strong></p>
+<ul>
+<li><strong>Outer split</strong> (<span class="math inline">\(\mathcal{D} \to A,B\)</span>): nuisance fit on <span class="math inline">\(A\)</span>, evaluate <span class="math inline">\(\hat\delta\)</span> on <span class="math inline">\(B\)</span> — and vice versa</li>
+<li><strong>Inner split</strong> within each outer fold: weight learning on one half, test statistic computation on the other</li>
+</ul>
+<p>→ Weights and test statistics are computed on independent samples, restoring asymptotic normality of <span class="math inline">\(Q_{i,r}\)</span>.</p>
+</div>
+<aside class="notes">
+<p>The technical-hygiene slide. Key insight: you have to <em>separate</em> weight learning from testing — can’t reuse the same data, even with K-fold cross-validation, because of within-Z_i correlation across pairwise t-statistics. The two-layer design is the technical contribution.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="empirical-false-selection-rate-vs-k" class="slide level2">
+<h2>Empirical: false-selection rate vs <span class="math inline">\(K\)</span></h2>
+<div class="cols cols-12">
+<div>
+<p><span class="navy"><strong>Sample finding.</strong></span> On benchmark datasets (ACIC, IHDP, Twins), as <span class="math inline">\(K\)</span> grows the naive method’s false-selection rate inflates. The weighted method remains stable.</p>
+<div class="warmbox">
+<p><strong>Practical takeaway.</strong> Don’t hand-pick a single metalearner. Run a few candidates, compute pairwise relative errors with cross-fitting, and report a confidence set for the winner.</p>
+</div>
+</div>
+<p>ADD IMAGE</p>
+</div>
+<aside class="notes">
+<p>Schematic; for the final talk, swap in the actual benchmark figure (Figure 4 of relerror.pdf). Note the weighted method beats Bonferroni and ranking inference <em>as well as</em> the naive max-statistic.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="practical-workflow" class="slide level2">
+<h2>Practical workflow</h2>
+<div class="keybox">
+<p><strong>Step-by-step recipe.</strong></p>
+<ul>
+<li>Choose a small set of candidate metalearners — say 3–5 — covering different bias-variance tradeoffs</li>
+<li>Run the omnibus test on each (Part 1)</li>
+<li>For candidates that pass: compute all pairwise <span class="math inline">\(\hat\delta(\hat\tau_r, \hat\tau_s)\)</span> with proper cross-fitting</li>
+<li>Apply the weighted argmin test to construct <span class="math inline">\(\hat S\)</span></li>
+<li>Report <span class="math inline">\(\hat S\)</span> and <em>visualize</em> <span class="math inline">\(\hat\delta\)</span> across pairs — even when there’s a clear winner, the magnitudes are informative</li>
+</ul>
+</div>
+<p><span class="rust"><strong>Don’t:</strong></span> pick a single estimator before running diagnostics, hoping it works.</p>
+<p><span class="navy"><strong>Do:</strong></span> treat model selection as an inferential problem with calibrated uncertainty.</p>
+<aside class="notes">
+<p>Practical-takeaway slide. Audience members who want to walk away with concrete advice get it here. The implicit message: this is a much more honest workflow than “I tried five learners and used the one that looked good.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="influence-points" class="title-slide slide level1 section-slide center">
+<h1>Influence points</h1>
+<div class="section-num">
+<p>Are results sensitive to small changes in the dataset?</p>
+</div>
+</section>
+<section id="why-we-need-influence-diagnostics" class="slide level2">
+<h2>Why we need influence diagnostics</h2>
+<p>Both omnibus tests and pairwise relative-error comparisons can be <strong>driven by a small handful of points</strong>.</p>
+<div class="warmbox">
+<p><strong>The classical answer (regression).</strong> Cook’s distance: leave each point out, see how the fit moves. Robust statistics has been doing this for 40 years.</p>
+<p><strong>The HTE problem.</strong> <span class="math inline">\(\tau_i\)</span> is unobservable, so we can’t measure “fit” the usual way — and dropping <em>one point at a time</em> misses the structure of how points interact.</p>
+</div>
+<p><span class="navy"><strong>Goal.</strong></span> Find the <em>set</em> of training points whose removal would most change downstream CATE predictions — and use that set as a stability summary.</p>
+<aside class="notes">
+<p>Frame this as the “meta-diagnostic.” Cook’s distance for HTE — but generalized to sets, not single points, and to predictions on a held-out test set, not training residuals.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="outliers-in-tau-are-invisible-in-y" class="slide level2">
+<h2>Outliers in <span class="math inline">\(\tau\)</span> are invisible in <span class="math inline">\(Y\)</span></h2>
+
+<img data-src="diagnostics_files/figure-revealjs/outlier-tau-1.png" style="width:98.0%" class="r-stretch quarto-figure-center"><p class="caption">A clean Y(1)/Y(0) view hides 10 outliers in τ. We need diagnostics that target the unobservable τ surface, not the observable Y.</p><aside class="notes">
+<p>Punchline figure for “why this is hard.” Reproducing your draft’s Figure 1 conceptually. For the final, use your actual figure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="defining-the-influence-set" class="slide level2">
+<h2>Defining the influence set</h2>
+<p>Let <span class="math inline">\(v\in\{0,1\}^{n_{\text{tr}}}\)</span> index which training points we keep (<span class="math inline">\(v_i=1\)</span>) or drop (<span class="math inline">\(v_i=0\)</span>).</p>
+<p>Let <span class="math inline">\(\hat g(v) = g_\tau(X_{\text{test}};\hat\theta(v))\)</span> be the predicted CATEs on the test set when refit using only <span class="math inline">\(v_i = 1\)</span> training points.</p>
+<div class="keybox">
+<p><strong>Prediction shift.</strong> <span class="math display">\[
+\phi(v) \;=\; \|\hat g(v) - \hat g(\mathbf{1})\|_2^2.
+\]</span></p>
+<p>By construction <span class="math inline">\(\phi(\mathbf{1}) = 0\)</span>. Large <span class="math inline">\(\phi(v)\)</span> ⇒ removing this set substantially changes the CATE predictions.</p>
+</div>
+<p><span class="navy"><strong>Three crucial design choices:</strong></span></p>
+<ul>
+<li>Evaluate on a held-out test set (not training residuals)</li>
+<li>Look at sets, not single points</li>
+<li>Target prediction shifts in <span class="math inline">\(\hat\tau\)</span>, not changes in <span class="math inline">\(Y\)</span> predictions</li>
+</ul>
+<aside class="notes">
+<p>Three things to land. Walk through each. The “evaluate on held-out test set” choice is what distinguishes our setup from training-residual approaches like Cook’s.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-optimization-problem" class="slide level2">
+<h2>The optimization problem</h2>
+<p>For a target removal proportion <span class="math inline">\(\rho\)</span>: <span class="math display">\[
+\arg\max_{v\in\{0,1\}^{n_{\text{tr}}}} \phi(v) \quad \text{s.t.} \quad \|v\|_0 = (1-\rho)\,n_{\text{tr}}.
+\]</span></p>
+<p><span class="mid">An adversarial / worst-case characterization of training-set sensitivity: <em>which <span class="math inline">\(\rho n_{\text{tr}}\)</span> points, if removed, would most change downstream predictions?</em></span></p>
+<div class="warmbox">
+<p><strong>Why this is hard.</strong></p>
+<ul>
+<li><span class="math inline">\(\binom{n_{\text{tr}}}{\rho n_{\text{tr}}}\)</span> candidate sets — combinatorially intractable for moderate <span class="math inline">\(n\)</span></li>
+<li>Each evaluation of <span class="math inline">\(\phi(v)\)</span> requires <em>refitting</em> the full metalearner pipeline → very expensive</li>
+<li>The metalearner is a multi-stage estimation pipeline; the influence of removing <span class="math inline">\(i\)</span> propagates through nuisance estimates <em>and</em> the CATE step</li>
+</ul>
+</div>
+<p><span class="mid">Plan: linearize the dependence of <span class="math inline">\(\hat g\)</span> on the dropped points using influence functions, recover a tractable optimization.</span></p>
+<aside class="notes">
+<p>This slide motivates everything that follows. Audience should leave with: combinatorial → linearize → solve a tractable surrogate. We’re not solving the exact problem; we’re solving an accurate approximation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="multi-stage-estimation-influence-chains-through-theta" class="slide level2">
+<h2>Multi-stage estimation: influence chains through <span class="math inline">\(\theta\)</span></h2>
+<p>A metalearner has <em>multiple</em> estimated components: <span class="math display">\[
+\theta = (\hat\pi(\cdot),\, \hat m_0(\cdot),\, \hat m_1(\cdot)),
+\qquad
+g_\tau(X_{\text{test}};\theta) = \text{CATE predictions}.
+\]</span></p>
+<p><span class="mid">Removing a single point <span class="math inline">\(i\)</span> changes <em>each</em> component. The downstream effect on <span class="math inline">\(\hat g\)</span> is the chain of all these changes.</span></p>
+<div class="keybox">
+<p><strong>First-order Taylor expansion.</strong> <span class="math display">\[
+\frac{\partial \hat g(v)}{\partial v_i}\bigg|_{v=\mathbf{1}}
+\;=\;\underbrace{\frac{\partial g_\tau(X_{\text{test}};\theta)}{\partial \theta}\bigg|_{\hat\theta(\mathbf{1})}}_{J_g\,:\, \text{multi-stage Jacobian}}
+\;\times\;\underbrace{\frac{\partial \hat\theta(v)}{\partial v_i}\bigg|_{\mathbf{1}}}_{\text{IF}_\theta(i)\,:\,\text{classical IF}}
+\]</span></p>
+</div>
+<p><span class="mid"><span class="math inline">\(J_g\)</span> encodes how predicted CATEs respond to changes in nuisance components — across propensity, outcome models, and the <span class="math inline">\(\tau\)</span>-estimation step.</span></p>
+<aside class="notes">
+<p>Technically dense — make sure to land that θ has multiple components and the chain rule passes through all of them. This is the part that’s <em>new</em> relative to standard influence-function approaches: those handle a single estimator; we handle the full pipeline.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="single-point-influence-closed-form" class="slide level2">
+<h2>Single-point influence — closed form</h2>
+<div class="keybox">
+<p><strong>Lemma (single-point IF).</strong> Dropping observation <span class="math inline">\(i\)</span> shifts predictions by approximately <span class="math display">\[
+\text{IF}_g(i) \;=\; -\,J_g\, H_\theta^{-1}\, \tfrac{1}{n_{\text{tr}}} \nabla_\theta \ell(\hat\theta(\mathbf{1});X_i,Z_i,Y_i)
+\]</span> where <span class="math inline">\(H_\theta = \tfrac{1}{n_{\text{tr}}}\sum_k \nabla_\theta^2 \ell(\hat\theta(\mathbf{1});X_k,Z_k,Y_k)\)</span> is the training Hessian.</p>
+<p>For a single dropped point: <span class="math display">\[
+\phi(v^{(-i)}) \;\approx\; \|\text{IF}_g(i)\|_2^2.
+\]</span></p>
+</div>
+<p><span class="mid"><strong>Connection to Cook’s distance.</strong> This is a generalized Cook’s distance — the inverse Hessian + score gradient structure is the same; the new ingredient is the multi-stage Jacobian <span class="math inline">\(J_g\)</span> that propagates the influence through to predictions on <span class="math inline">\(X_{\text{test}}\)</span>.</span></p>
+<aside class="notes">
+<p>Audience members who’ve taught regression diagnostics will see Cook’s distance immediately. Mention this — familiar anchor. The novelty is the metalearner-aware J_g.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="estimating-q-via-auto-differentiation" class="slide level2">
+<h2>Estimating <span class="math inline">\(Q\)</span> via auto-differentiation</h2>
+<p>The pairwise quadratic form <span class="math inline">\(Q_{ij} = 2\,\text{IF}_g(i)^\top \text{IF}_g(j)\)</span> requires:</p>
+<ul>
+<li><span class="math inline">\(J_g\)</span> — Jacobian of metalearner output w.r.t. <span class="math inline">\(\theta\)</span></li>
+<li><span class="math inline">\(H_\theta^{-1}\)</span> — inverse Hessian of training loss</li>
+<li><span class="math inline">\(\nabla_\theta \ell\)</span> — gradient at each training point</li>
+</ul>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>Computing <span class="math inline">\(H_\theta^{-1}\)</span> is the bottleneck.</strong></span> For metalearners with thousands of parameters, forming <span class="math inline">\(H_\theta\)</span> explicitly is infeasible.</p>
+<div class="keybox">
+<p><strong>Solution.</strong> Use forward-mode autodiff to compute Hessian-vector products <span class="math inline">\(H_\theta v\)</span> on demand; solve <span class="math inline">\(H_\theta x = b\)</span> via <strong>Conjugate Gradient Descent (CGD)</strong>.</p>
+</div>
+</div>
+<div>
+<div class="warmbox">
+<p><strong>Practical points.</strong></p>
+<ul>
+<li>Each CGD step costs one HVP evaluation</li>
+<li>Convergence in ~50–200 iterations for typical problems</li>
+<li>Memory: <span class="math inline">\(O(p_\theta)\)</span> rather than <span class="math inline">\(O(p_\theta^2)\)</span></li>
+<li>Works for any <em>differentiable</em> metalearner: ridge R-learner, neural-network learners, etc.</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Computational practicalities. Autodiff + CGD is the standard recipe — borrowed from optimization-of-bilevel-problems literature. Anyone who’s implemented an influence function for a deep network has seen this. Mention briefly that this is what makes the method scalable.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-if-the-metalearner-isnt-smooth" class="slide level2">
+<h2>What if the metalearner isn’t smooth?</h2>
+<p>Causal forests, boosted trees, kernel learners — these aren’t differentiable in <span class="math inline">\(\theta\)</span>. The chain-rule derivation breaks.</p>
+<div class="warmbox">
+<p><span class="rust"><strong>Fallback.</strong></span> Replace analytic IF with <strong>finite-difference influence</strong>: <span class="math display">\[
+\text{IF}_g(i) \;\approx\; \hat g(\mathbf{1} - e_i) - \hat g(\mathbf{1})
+\]</span></p>
+<p>Compute by actually refitting with point <span class="math inline">\(i\)</span> dropped. Costs <span class="math inline">\(n_{\text{tr}}\)</span> refits up front, but cached for the optimization.</p>
+</div>
+<div class="keybox">
+<p><strong>Hybrid practice.</strong> Use analytic IF where possible (smooth components like ridge); finite-difference for non-smooth components. The pairwise structure still admits a BQP formulation; the only thing that changes is how <span class="math inline">\(Q\)</span> is estimated.</p>
+</div>
+<p><span class="mid">Ridge R-learner has analytic forms; causal forest needs finite-difference.</span></p>
+<aside class="notes">
+<p>Important caveat. Audience members who plan to use causal forests need to know this. Good news: the rest of the framework (BQP, influence sets, breakdown points) doesn’t change — only the estimation of Q.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="why-ranking-by-if-fails-redundancy-and-cancellation" class="slide level2">
+<h2>Why ranking by IF fails: redundancy and cancellation</h2>
+<div class="cols cols2">
+<div>
+<p>The natural temptation: rank training points by <span class="math inline">\(\|\text{IF}_g(i)\|^2\)</span>, drop the top <span class="math inline">\(k\)</span>.</p>
+<p><span class="rust"><strong>Why it fails.</strong></span></p>
+<ul>
+<li>Two high-IF points may exert <em>redundant</em> influence — dropping both gives roughly the same shift as dropping one</li>
+<li>Two moderate-IF points may <em>cancel</em> individually but exert large <em>joint</em> influence when dropped together</li>
+</ul>
+</div>
+<div>
+<p>The full quadratic form has cross terms: <span class="math display">\[
+\phi(v) \;\approx\; (v-\mathbf{1})^\top Q\,(v-\mathbf{1})
+\]</span> <span class="math display">\[
+Q_{ij} = 2\,\text{IF}_g(i)^\top \text{IF}_g(j)
+\]</span></p>
+<div class="warmbox">
+<p>Top-<span class="math inline">\(k\)</span> ranking ignores the <strong>off-diagonal</strong> <span class="math inline">\(Q_{ij}\)</span> — exactly the term that captures redundancy and cancellation.</p>
+</div>
+</div>
+</div>
+<p><span class="mid">Existing methods (Broderick et al.&nbsp;2020, Koh &amp; Liang 2017) rank by diagonal alone and miss this structure.</span></p>
+<aside class="notes">
+<p>The “why naive doesn’t work” slide. The Q decomposition is a clean way to show off-diagonals matter. Tie back to existing literature: Broderick et al.&nbsp;(2020), Koh &amp; Liang (2017) are top-k methods. Our contribution is to handle the cross terms.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bqp1-a-tractable-optimization" class="slide level2">
+<h2>BQP1: a tractable optimization</h2>
+<p>Substituting the quadratic form into the influence-set objective gives a <span class="navy">Binary Quadratic Program</span>: <span class="math display">\[
+\max_{v\in\{0,1\}^{n_{\text{tr}}}} \;(v-\mathbf{1})^\top Q\,(v-\mathbf{1})
+\quad\text{s.t.}\quad \|v\|_0 = (1-\rho)\,n_{\text{tr}}.
+\]</span></p>
+<div class="keybox">
+<p><strong>Why this is good.</strong></p>
+<ul>
+<li>Off-the-shelf MIQP solvers (Gurobi, CPLEX) give <strong>global optimality</strong> guarantees</li>
+<li>Single-point case is recovered as a special case</li>
+<li>Approximation error is <span class="math inline">\(O(\rho^2 n_{\text{tr}}^2)\)</span> from the truncated Taylor series</li>
+</ul>
+</div>
+<p><span class="mid">We call this the <strong>first-order BQP</strong> (BQP1).</span></p>
+<aside class="notes">
+<p>The “binary quadratic program” framing is what makes this practical — solvers are mature. Briefly mention global optimality is meaningful here because greedy / top-k are local methods.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bqp2-second-order-correction-for-joint-deletions" class="slide level2">
+<h2>BQP2: second-order correction for joint deletions</h2>
+<p>For more accurate joint-deletion behavior, expand to second order. The quadratic form becomes <span class="math display">\[
+\phi(v) \;\approx\; (v-\mathbf{1})^\top Q^{(2)}\,(v-\mathbf{1}), \qquad Q^{(2)} = Q^{(1)} + R
+\]</span></p>
+<p><span class="mid"><span class="math inline">\(R\)</span> is a tensor-decomposition correction that captures <strong>second-order changes</strong> in the metalearner refit when <em>pairs</em> of points are dropped together.</span></p>
+<div class="keybox">
+<p><strong>Why this matters.</strong> When points are correlated in the underlying <span class="math inline">\(X\)</span> space, removing both of them induces interactions that first-order misses. <span class="math inline">\(R\)</span> recovers them.</p>
+<p><span class="mid">Approximation error: <span class="math inline">\(O(\rho^3 n_{\text{tr}}^3)\)</span> — qualitatively better than BQP1 in regimes where pairwise interactions matter.</span></p>
+</div>
+<aside class="notes">
+<p>The R correction is the technical novelty. Detail level: mention it’s a tensor decomposition computed via automatic differentiation but don’t derive it. Audience just needs to know there’s a principled higher-order term.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="method-hierarchy" class="slide level2">
+<h2>Method hierarchy</h2>
+<div class="keybox">
+<p><strong>Three tiers</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th style="text-align: center;">Single-point</th>
+<th style="text-align: center;">Joint deletions</th>
+<th style="text-align: center;">Solver complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Naive top-<span class="math inline">\(k\)</span></td>
+<td style="text-align: center;">exact</td>
+<td style="text-align: center;">ignores correlations</td>
+<td style="text-align: center;">trivial</td>
+</tr>
+<tr class="even">
+<td><strong>BQP1</strong></td>
+<td style="text-align: center;">exact</td>
+<td style="text-align: center;">first-order</td>
+<td style="text-align: center;">MIQP</td>
+</tr>
+<tr class="odd">
+<td><strong>BQP2</strong></td>
+<td style="text-align: center;">exact</td>
+<td style="text-align: center;">second-order</td>
+<td style="text-align: center;">MIQP, larger <span class="math inline">\(Q\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Each row strictly contains the previous — naive ⊂ BQP1 ⊂ BQP2 in expressive power.</p>
+</div>
+<div class="warmbox">
+<p><strong>Why all three?</strong> BQP1 is fast and good when points are nearly independent; BQP2 is necessary when correlations matter (which is most of the time). Naive is included for comparison and for situations where MIQP isn’t available.</p>
+</div>
+<aside class="notes">
+<p>Hierarchy table. Audience walks away with a mental model: I’m not picking <em>between</em> methods, I’m picking <em>how much</em> approximation error I tolerate.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="comparison-to-existing-influence-work" class="slide level2">
+<h2>Comparison to existing influence work</h2>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>Broderick et al.&nbsp;(2020), Koh &amp; Liang (2017)</strong></span></p>
+<ul>
+<li>Single-task (regression / classification)</li>
+<li>Single-point influence only</li>
+<li>Diagonal <span class="math inline">\(Q\)</span>: <span class="math inline">\(\|\text{IF}(i)\|^2\)</span></li>
+<li>Greedy/top-<span class="math inline">\(k\)</span> for sets</li>
+</ul>
+<p><span class="mid">Used for outlier detection, training-data attribution.</span></p>
+</div>
+<div>
+<p><span class="orange"><strong>Our contribution</strong></span></p>
+<ul>
+<li>Multi-stage metalearners (CATE setting)</li>
+<li>Adversarial <em>set</em>-level influence</li>
+<li>Full <span class="math inline">\(Q\)</span> with off-diagonals + tensor correction <span class="math inline">\(R\)</span></li>
+<li>Global-optimum sets via MIQP</li>
+</ul>
+<p><span class="mid">Used for HTE diagnostic, latent-subgroup discovery, breakdown-point estimation.</span></p>
+</div>
+</div>
+<div class="keybox">
+<p><strong>Reduction.</strong> When the metalearner is single-stage and the off-diagonals are zero, our framework reduces to Koh-Liang/Broderick. We strictly generalize.</p>
+</div>
+<aside class="notes">
+<p>This slide positions our work for an audience that knows existing influence-function literature. The reduction comment is important — frames our work as a natural generalization rather than a separate thing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="jtpa-application-the-prediction-shift-result" class="slide level2">
+<h2>JTPA application: the prediction-shift result</h2>
+<div class="cols cols2">
+<div>
+<p><strong>Setup.</strong> Job Training Partnership Act data. Four sites: Cedar Rapids IA, Corpus Christi TX, Larimer County CO, Providence RI.</p>
+<p>Two metalearners (Ridge R-Learner, Causal Forest), tested influence sets at <span class="math inline">\(\rho \in \{1\%, 5\%, 10\%, 20\%\}\)</span>.</p>
+<div class="keybox">
+<p><strong>Result.</strong> BQP2 finds influence sets that produce <strong>substantially larger</strong> downstream prediction shifts than BQP1, naive top-<span class="math inline">\(k\)</span>, or random — consistently across all sites and learners.</p>
+</div>
+<p><span class="mid">Larger shift means the method is identifying genuinely high-leverage training points, not just noise.</span></p>
+</div>
+<div>
+
+</div>
+</div>
+<aside class="notes">
+<p>The four-sites × two-learners figure is the empirical headline. BQP2 dominates across sites and learners — the kind of robustness audiences want to see.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="jtpa-application-the-latent-subgroup" class="slide level2">
+<h2>JTPA application: the latent subgroup</h2>
+<p>The most striking finding wasn’t <em>how much</em> the predictions shifted — it was <em>whose</em> predictions shifted.</p>
+<div class="cols cols-12">
+<div>
+<div class="warmbox">
+<p><strong>Influence set as latent subgroup.</strong> The 10% influence set identified by BQP2 corresponds primarily to individuals with <strong>high previous earnings</strong> — a coherent subgroup that BQP1 and naive miss.</p>
+</div>
+<p><span class="navy"><strong>Read the figure (right):</strong></span> each panel shows test CATEs from the full-data fit (x-axis) vs after dropping the influence set (y-axis), colored by previous earnings. Dashed line: no change.</p>
+<p><span class="mid">BQP2 reveals an orange/red cluster (high earners) that pulls dramatically off the diagonal — that’s the subgroup being uncovered.</span></p>
+</div>
+<div>
+
+</div>
+</div>
+<aside class="notes">
+<p>This is the slide that should land hardest. The influence set isn’t just a stability summary — it’s a <em>discovery tool</em> for subgroups where the metalearner is unstable. Dovetails directly back to Falco’s discovery framing: we’ve come full circle.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="breakdown-point-a-single-number-summary" class="slide level2">
+<h2>Breakdown point: a single-number summary</h2>
+<div class="keybox">
+<p><strong>Definition (breakdown point for HTE).</strong> Given a target prediction-shift threshold <span class="math inline">\(\phi^*\)</span>, define <span class="math display">\[
+\rho_{\text{break}} \;=\; \min_{\rho}\Bigl\{\rho \,:\; \max_v \phi(v) &gt; \phi^*,\;\;\|v\|_0 = (1-\rho)n_{\text{tr}}\Bigr\}.
+\]</span></p>
+<p>The smallest fraction of training data we’d need to drop to induce a <span class="math inline">\(\phi^*\)</span> shift in CATE predictions.</p>
+</div>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>Why this is useful.</strong></span></p>
+<ul>
+<li>Single-number summary of model robustness</li>
+<li>Comparable across metalearners on the same data</li>
+<li>Connects to robust-statistics breakdown point (Hampel, Huber)</li>
+<li>Directly actionable: “if I lose more than <span class="math inline">\(\rho_{\text{break}} \cdot n\)</span> patients to dropout, my conclusions are at risk”</li>
+</ul>
+</div>
+<div>
+<div class="warmbox">
+<p><strong>Practical use.</strong> Compare two candidate metalearners; pick the one with the larger <span class="math inline">\(\rho_{\text{break}}\)</span> when the omnibus and relative-error tests are inconclusive.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Single-number summary is what gets used in tables and grant reports. The connection to robust statistics breakdown point (Hampel) is worth flagging — same conceptual object, different operationalization.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 section-slide center">
+<h1>Wrap-up</h1>
+<div class="section-num">
+<p>RECAP &amp; HANDOFF</p>
+</div>
+</section>
+<section id="three-diagnostics" class="slide level2">
+<h2>Three diagnostics</h2>
+<div class="cols cols3">
+<div>
+<p><span class="navy"><strong>Omnibus</strong></span></p>
+<p>Test for <em>any</em> signal in <span class="math inline">\(\hat\tau\)</span>.</p>
+<p><span class="mid">Use BLP-based <span class="math inline">\(\hat\beta_\tau\)</span>; reach for the <strong>robust LTS variant</strong> when residuals look heavy-tailed.</span></p>
+</div>
+<div>
+<p><span class="navy"><strong>Relative error</strong></span></p>
+<p>Compare candidate metalearners <em>without</em> ground truth.</p>
+<p><span class="mid">Cross-fit the one-step estimator; use <strong>exponential weighting</strong> for argmin inference when <span class="math inline">\(K\)</span> is moderate.</span></p>
+</div>
+<div>
+<p><span class="orange"><strong>Influence points/sets</strong></span></p>
+<p>Find the training points driving the estimates.</p>
+<p><span class="mid"><strong>BQP1 / BQP2</strong> for global-optimum sets; reveals stability <em>and</em> latent subgroups.</span></p>
+</div>
+</div>
+<div class="keybox">
+<p><strong>Overall.</strong></p>
+</div>
+<aside class="notes">
+<p>Recap slide. Keep brief — most of the time on this slide is verbal recap before the handoff.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-the-three-diagnostics-connect" class="slide level2">
+<h2>How the three diagnostics connect</h2>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>Vertical structure.</strong></span></p>
+<ul>
+<li>Omnibus → “is there signal?”</li>
+<li>Relative error → “is this signal <em>the best</em>?”</li>
+<li>Influence functions → “is the answer to (1) and (2) robust?”</li>
+</ul>
+<p><span class="mid">Run them in this order: omnibus first to filter candidates, relative error to rank, influence functions to validate the conclusion.</span></p>
+</div>
+<div>
+<div class="keybox">
+<p><strong>Cross-connections.</strong></p>
+<ul>
+<li>Influence functions can target the <strong>omnibus statistic</strong> itself, not just CATE predictions — find the points that drive a rejection (Part 3 forward-look)</li>
+<li>Relative-error comparisons can be <strong>perturbed</strong> by influence sets — check whether the winner <span class="math inline">\(\hat S\)</span> is stable to dropping a small fraction of data</li>
+<li>The robust LTS estimator in the omnibus test is itself an influence-function-style downweighting</li>
+</ul>
+</div>
+</div>
+</div>
+<p><span class="mid">The three diagnostics aren’t a checklist — they’re a single connected framework for <strong>using observable structure to validate models of an unobservable target</strong>.</span></p>
+<aside class="notes">
+<p>Synthesis slide. The cross-connections are what make this a coherent framework rather than three separate methods. The LTS-as-influence-downweighting connection is genuine and worth flagging — it ties Part 1 to Part 3 conceptually.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="handoff-to-tiffany-hands-on-lab" class="slide level2">
+<h2>Handoff to Tiffany — Hands-on Lab</h2>
+<div class="cols cols2">
+<div>
+<p><span class="navy"><strong>What you’ve seen so far</strong></span></p>
+<ul>
+<li><em>Melody:</em> Discovery of subgroups &amp; effect modifiers</li>
+<li><em>Falco:</em> Interpretability &amp; stability for selection</li>
+<li><em>Ana:</em> Diagnostics — does the model fit, is it best, is it robust</li>
+</ul>
+<p><span class="orange"><strong>What’s next</strong></span></p>
+<p>Tiffany walks you through how to actually run all of this — metalearners, CDT, causal rule ensemble, feature importances, and the diagnostic methods we just discussed — in R.</p>
+</div>
+<div>
+<div class="warmbox">
+<p><strong>You’ll get to:</strong></p>
+<ul>
+<li>Fit several metalearners on a real dataset</li>
+<li>Run the omnibus and relative-error tests</li>
+<li>Compute influence sets and identify latent subgroups</li>
+<li>Connect each diagnostic back to the decision you’d make as a researcher</li>
+</ul>
+</div>
+<p><span class="navy">Thank you!</span></p>
+<p><span class="mid"><strong>Questions?</strong></span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Closing handoff slide. Keep brief, allow time for questions or move directly into the lab depending on schedule.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="references" class="slide level2" data-visibility="uncounted">
+<h2>References</h2>
+<div class="cap">
+<ul>
+<li>Chernozhukov, V. et al.&nbsp;(2018). Generic ML inference on heterogeneous treatment effects.</li>
+<li>Gao, Z. (2024). Towards model selection for heterogeneous treatment effects.</li>
+<li>Cook, R. D. &amp; Weisberg, S. (1982). <em>Residuals and Influence in Regression</em>.</li>
+<li>Broderick, T., Giordano, R., Meager, R. (2020). An automatic finite-sample robustness check.</li>
+<li>Koh, P. W. &amp; Liang, P. (2017). Understanding black-box predictions via influence functions.</li>
+<li>Kenney, A., Huang, M., Tang, T. (2026). Adversarial influence sets for HTE models.</li>
+<li>Imai, K., Ratkovic, M. (2013). Estimating treatment effect heterogeneity in randomized program evaluation.</li>
+<li>Hampel, F. R. (1971). A general qualitative definition of robustness.</li>
+</ul>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="diagnostics_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="diagnostics_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="diagnostics_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="diagnostics_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 8.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
